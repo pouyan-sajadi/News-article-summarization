@@ -1,6 +1,6 @@
 import requests
 
-API_KEY = '71c468443a43428c99a99e9646e2751a'
+API_KEY = 'API_KEY'
 URL = 'https://newsapi.org/v2/everything'
 
 def fetch_news(query, page=1):
