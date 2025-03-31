@@ -3,7 +3,12 @@ from transformers import pipeline
 summarizer = pipeline('summarization')
 
 def summarize_article(article):
-    return summarizer(article, max_length=1300, min_length=30, do_sample=False)[0]['summary_text']
+    # Calculate appropriate lengths based on input
+    input_length = len(article.split())
+    max_length = min(130, input_length)  # Cap at 130 words or input length
+    min_length = min(30, max(10, input_length // 3))  # At least 10 words or 1/3 of input
+    
+    return summarizer(article, max_length=max_length, min_length=min_length, do_sample=False)[0]['summary_text']
 
 if __name__ == '__main__':
     article = ("Your long news article text here. "
